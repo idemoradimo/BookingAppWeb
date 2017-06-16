@@ -5,6 +5,7 @@ Za  angular:
 2.npm install -g typescript
 3.npm install -g @angular/cli
 
+4.npm start
 
 
 package.json (invetory app ) se kuca ovo sve
