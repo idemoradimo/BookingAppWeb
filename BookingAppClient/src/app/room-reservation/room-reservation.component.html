@@ -1,0 +1,29 @@
+<h3>Add room-reservations</h3>
+<form #f="ngForm" (ngSubmit)="addRoomReservation(f.value, f)">
+     <div>
+      <label for="StartDate: ">StartDate</label>
+      <input type="date" name="StartDate" ngModel>
+    </div>
+    <div>
+      <label for="EndDate: ">EndDate</label>
+      <input type="date" name="EndDate" ngModel>
+    </div>
+       <div>
+      <label for="Timestamp: : ">Timestamp</label>
+      <input type="time" name="Timestamp" ngModel>
+    </div>
+    <select name="RoomReservationId" id="RoomReservationId" [(ngModel)]="RoomReservationId">
+      <option *ngFor = "let roomreservation of roomreservationId" value={{roomreservation.Id}} >{{roomreservation.Name}}</option>
+    </select>
+  <input type="submit"/>
+</form>
+
+<h3>RoomReservations</h3>
+<div>
+  <ul>
+    <li *ngFor="let roomreservation of roomreservations"
+    (click)='clicked(roomreservation)'>
+      {{roomreservations.Name}}
+    </li>
+  </ul>
+</div>

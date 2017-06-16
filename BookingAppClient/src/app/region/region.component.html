@@ -1,0 +1,21 @@
+<h3>Add region</h3>
+<form #f="ngForm" (ngSubmit)="addRegion(f.value, f)">
+     <div>
+      <label for="Name">Name</label>
+      <input type="text" name="Name" ngModel>
+    </div>
+    <select name="CountryId" id="CountryId" [(ngModel)]="CountryId">
+      <option *ngFor = "let country of countries" value={{country.Id}} >{{country.Name}}</option>
+    </select>
+  <input type="submit"/>
+</form>
+
+<h3>Region</h3>
+<div>
+  <ul>
+    <li *ngFor="let region of regions"
+    (click)='clicked(region)'>
+      {{region.Name}}
+    </li>
+  </ul>
+</div>

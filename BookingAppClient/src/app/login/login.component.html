@@ -1,0 +1,32 @@
+<div>
+  <form #f="ngForm" (ngSubmit)="logIn()">
+
+    <table>
+      <tr>
+          <td>
+              <label for = "Username">Username:</label>
+          </td>
+          <td>
+              <input type="text" name="Username" id="Username" [(ngModel)]="Username"/>
+          </td>
+      </tr>
+
+      <tr>
+          <td>
+                <label for = "Password">Password:</label>
+          </td>
+
+          <td>
+                <input type="password" name="Password" id="Password" [(ngModel)]="Password"/>
+            </td>
+      </tr>
+
+   
+
+    </table>
+  <br>
+  <div>
+    <input class="button button1" type="submit" value="Login"/>
+  </div>
+</form>
+</div>

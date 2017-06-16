@@ -1,0 +1,31 @@
+<h3>Add room</h3>
+<form #f="ngForm" (ngSubmit)="addRoom(f.value, f)">
+     <div>
+      <label for="RoomNumber">RoomNumber</label>
+      <input type="nummber" name="RoomNumber" ngModel>
+    </div>
+    <div>
+      <label for="BedCount">BedCount</label>
+      <input type="number" name="BedCount" ngModel>
+    </div>
+
+    <div>
+      <label for="Description">Description</label>
+      <input type="text" name="Description" ngModel>
+    </div>
+        <div>
+      <label for="PricePerNight">PricePerNight</label>
+      <input type="text" name="PricePerNight" ngModel>
+    </div>
+  <input type="submit"/>
+</form>
+
+<h3>Rooms</h3>
+<div>
+  <ul>
+    <li *ngFor="let room of rooms"
+    (click)='clicked(room)'>
+      {{room.Name}}
+    </li>
+  </ul>
+</div>
