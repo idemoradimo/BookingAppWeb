@@ -97,8 +97,8 @@ namespace BookingApp.Controllers
         }
 
         // DELETE: api/Regions/5
-        [Authorize(Roles = "Admin, Manager")]
-        [HttpPost]
+       // [Authorize(Roles = "Admin, Manager")]
+        [HttpDelete]
         [Route("Regions/{id}")]
         [ResponseType(typeof(Region))]
         public IHttpActionResult DeleteRegion(int id) //deleteManager

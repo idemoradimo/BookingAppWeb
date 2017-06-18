@@ -94,7 +94,7 @@ namespace BookingApp.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("AccomodationTypes/{id}")]
         [ResponseType(typeof(AccomodationType))]

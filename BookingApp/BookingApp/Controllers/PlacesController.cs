@@ -97,8 +97,8 @@ namespace BookingApp.Controllers
         }
 
         // DELETE: api/Places/5
-        [Authorize(Roles = "Admin, Manager")]
-        [HttpPost]
+      //  [Authorize(Roles = "Admin, Manager")]
+        [HttpDelete]
         [Route("Places/{id}")]
         [ResponseType(typeof(Place))]
         public IHttpActionResult DeletePlace(int id) //deletePlace

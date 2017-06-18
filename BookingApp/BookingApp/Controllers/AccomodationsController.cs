@@ -83,7 +83,7 @@ namespace BookingApp.Controllers
         [HttpPost]
         [Route("Accomodations")]
         [ResponseType(typeof(Accomodation))]
-        public IHttpActionResult PostAccomodation(Accomodation accomodation)
+        public IHttpActionResult PostAccomodation()
         {
             Accomodation accommodation = new Accomodation();
 
