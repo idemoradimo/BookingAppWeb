@@ -1,10 +1,13 @@
 export class AppUser {
+    Id: number;
+    Username: String;
+    Email: String;
+    Password: String;
 
-    /*[StringLength(50)]*/
-    public Username: string;
-    /*[StringLength(50)]*/
-    public Email: string;
-    /*[StringLength(50)]*/
-    public Password: string;
-
+    constructor(Username: string, Email: string, Password: string, Id: number){
+        this.Id = Id;
+        this.Username = Username;
+        this.Email = Email;
+        this.Password = Password;
+    }
 }
