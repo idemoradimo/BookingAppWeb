@@ -331,14 +331,6 @@
     <Compile Include="Migrations\201706131049403_newMigration11.Designer.cs">
       <DependentUpon>201706131049403_newMigration11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706150912457_newMigration12.cs" />
-    <Compile Include="Migrations\201706150912457_newMigration12.Designer.cs">
-      <DependentUpon>201706150912457_newMigration12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706151000485_newMigration13.cs" />
-    <Compile Include="Migrations\201706151000485_newMigration13.Designer.cs">
-      <DependentUpon>201706151000485_newMigration13.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accomodation.cs" />
     <Compile Include="Models\AccomodationType.cs" />
@@ -476,12 +468,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706131049403_newMigration11.resx">
       <DependentUpon>201706131049403_newMigration11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706150912457_newMigration12.resx">
-      <DependentUpon>201706150912457_newMigration12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706151000485_newMigration13.resx">
-      <DependentUpon>201706151000485_newMigration13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
