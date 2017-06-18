@@ -34,6 +34,13 @@ export class PlaceComponent implements OnInit {
       this.httpPlaceService.postPlace(newPlace).subscribe(this.onPost);
       form.reset();
   }    
+   deletePlace(Id: number) {
+      this.httpPlaceService.deletePlace(Id).subscribe(()=>{ this.osvezi();}); 
+    }
+    osvezi()
+    {
+       this.httpPlaceService.getPlaces().subscribe((res:Response)=>{this.places=res.json();console.log(this.places)});
+    }
 
   onPost(res : any) : void{
       alert("Post!");

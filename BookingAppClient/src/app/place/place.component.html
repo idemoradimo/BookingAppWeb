@@ -16,6 +16,7 @@
     <li *ngFor="let place of places"
     (click)='clicked(place)'>
       {{place.Name}}
+       <button name="delete" (click) = "deletePlace(place.Id)" type="button">Delete</button>
     </li>
   </ul>
 </div>

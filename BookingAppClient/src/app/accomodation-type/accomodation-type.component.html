@@ -1,7 +1,8 @@
 <h3>Add Accomodation type</h3>
 <div>
   <ul>
-    <li *ngFor="let accType of accTypes">{{accType.Name}}</li>
+    <li *ngFor="let accType of accTypes">{{accType.Name}}
+     <button name="delete" (click) = "deleteAccType(accType.Id)" type="button">Delete</button> </li>
   </ul>
 </div>
 
@@ -11,7 +12,8 @@
       <label for="Name">Name</label>
       <input type="text" name="Name" ngModel>
     
-</div>   
+ </div>
+ 
   
 <input type="submit"/>
 </form>

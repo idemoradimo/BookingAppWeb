@@ -24,6 +24,10 @@ export class HttpAccTypeService{
         return body || [];
     }
 
+  deleteAccType(Id : number) : Observable<any> {
+        return this.http.delete(`http://localhost:54042/api/AccomodationTypes/`+Id);
+    }
+
     postAccType(accType): Observable<any>  {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
@@ -38,4 +42,16 @@ export class HttpAccTypeService{
             Name: accType.Name
         }), opts);
   }
+ /*deleteAccType(id: number): Observable<any>
+    {
+        let header = new Headers();
+        //header.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+        let opts = new RequestOptions();
+        opts.headers = header;
+
+        return this.http.delete(`http://localhost:54042/api/AccomodationTypes/${id}`, opts);
+    }*/
+   
+
 }

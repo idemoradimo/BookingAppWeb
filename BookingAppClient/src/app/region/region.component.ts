@@ -35,6 +35,13 @@ export class RegionComponent implements OnInit {
   addRegion(newRegion: Region, form: NgForm) : void{
       this.httpRegionService.postRegion(newRegion).subscribe(this.onPost);
       form.reset();
+    }
+      deleteRegion(Id: number) {
+      this.httpRegionService.deleteRegion(Id).subscribe(()=>{ this.osvezi();}); 
+    }
+    osvezi()
+    {
+       this.httpRegionService.getRegions().subscribe((res:Response)=>{this.regions=res.json();console.log(this.regions)});
     }    
 
   onPost(res : any) : void{

@@ -18,6 +18,7 @@ export class HttpPlaceService{
 
         return this.http.get("http://localhost:54042/api/Places");        
     }
+    
 
     private extractData(res: Response) {
         let body = res.json();
@@ -34,4 +35,7 @@ export class HttpPlaceService{
 
         return this.http.post( 'http://localhost:54042/api/Places',place, opts);
   }
+   deletePlace(Id : number) : Observable<any> {
+        return this.http.delete(`http://localhost:54042/api/Places/`+Id);
+    }
 }

@@ -16,6 +16,7 @@
     <li *ngFor="let region of regions"
     (click)='clicked(region)'>
       {{region.Name}}
+      <button name="delete" (click) = "deleteRegion(region.Id)" type="button">Delete</button>
     </li>
   </ul>
 </div>

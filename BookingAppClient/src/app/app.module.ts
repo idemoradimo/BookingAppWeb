@@ -35,7 +35,8 @@ const Routes = [
   {path:"place",component:PlaceComponent},
   {path:"region",component:RegionComponent},
   {path:"room",component:RoomComponent},
-  {path:"room-reservation",component:RoomReservationComponent}
+  {path:"room-reservation",component:RoomReservationComponent},
+  {path:"logout",component:LogoutComponent}
  
 ] 
 

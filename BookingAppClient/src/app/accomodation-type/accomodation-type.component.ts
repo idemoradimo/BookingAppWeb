@@ -14,12 +14,16 @@ export class AccomodationTypeComponent implements OnInit {
 
   accType: AccType;   //iz forme
   accTypes : Object []; //iz get metode - iz baze
+  accTypeName: string;   //za edit i delete
+  //id: number;
 
   constructor(private httpAccTypeService: HttpAccTypeService) { }
   
 
+
   ngOnInit() {
-    this.httpAccTypeService.getAccTypes().subscribe((res:Response)=>{this.accTypes=res.json();console.log(this.accTypes)});//You can set the type to Product.
+       this.httpAccTypeService.getAccTypes().subscribe((res:Response)=>{this.accTypes=res.json();console.log(this.accTypes)});//You can set the type to Product.
+     
    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
    // );
   }
@@ -27,7 +31,14 @@ export class AccomodationTypeComponent implements OnInit {
  /* ngOnInit(){
 this.httpCountryService.getCountries().subscribe((res:Response)=>{this.countries=res.json();console.log(this.countries)});
 }*/
-
+    deleteAccType(Id: number) {
+      this.httpAccTypeService.deleteAccType(Id).subscribe(()=>{ this.osvezi();}); 
+    }
+    
+    osvezi()
+    {
+       this.httpAccTypeService.getAccTypes().subscribe((res:Response)=>{this.accTypes=res.json();console.log(this.accTypes)});
+    }
 
   addAccType(newAccType: AccType, form: NgForm) : void{
       this.httpAccTypeService.postAccType(newAccType).subscribe(this.onPost);

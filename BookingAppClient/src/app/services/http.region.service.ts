@@ -35,4 +35,7 @@ export class HttpRegionService{
         return this.http.post(
         'http://localhost:54042/api/Regions',region,opts);
   }
+  deleteRegion(Id : number) : Observable<any> {
+        return this.http.delete(`http://localhost:54042/api/Regions/`+Id);
+    }
 }

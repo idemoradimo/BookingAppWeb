@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { LoginModel } from '../login/login.model';
 
 @Injectable()
+
 export class AuthService{
 
     loggedIn : boolean;
@@ -27,9 +28,20 @@ export class AuthService{
         'http://localhost:54042/oauth/token',`username=${Username}&password=${Password}&grant_type=password`,opts);
     }
 
-    logOut(): void{
-        localStorage.removeItem("token");
+  logOut() : Observable<any> {
+        
+        let header = new Headers();
+        header.append('Content-type', 'application/x-www-form-urlencoded');
+        header.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
+
+        let opts = new RequestOptions();
+        opts.headers = header;
+
+        return this.http.post(`http://localhost:54042/api/Account/Logout`, "", opts);
+        
     }
+        
+    
 
     isLoggedIn(): boolean{
         if(localStorage.getItem("token") !== null)
@@ -37,5 +49,20 @@ export class AuthService{
         else
             return false;
     }
+
+   /* isUserAdmin():boolean
+    {
+        return (localStorage.getItem('role') === 'Admin' )
+    }
+    
+    isUserManager():boolean
+    {
+        return (localStorage.getItem('role') === 'Manager' )
+    }
+
+    isUserAppUser():boolean
+    {
+        return (localStorage.getItem('role') === 'AppUser' )
+    }*/
   
 }

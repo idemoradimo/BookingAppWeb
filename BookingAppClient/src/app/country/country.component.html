@@ -15,6 +15,21 @@
 <div>
   <ul>
     <li *ngFor="let country of countries"> {{country.Name}}
+      <button name="delete" (click) = "deleteCountry(country.Id)" type="button">Delete</button>
+      <div *ngIf="country != null" >
+                        <label for="Name">name: </label>
+                        <input type = "text" name ="Name" id="Name" [(ngModel)]="country.Name"/><br>
+                        
+                        <label for="Code">code: </label>
+                        <input type = "number" name ="Code" id="Code" [(ngModel)]="country.Code"/><br>
+                    </div><br>
+
+                    <button type="submit" (click)="PutCountry()">Edit</button>
+                    <button type="button">Close</button>
     </li>
   </ul>
 </div>
+
+
+                   
+       
