@@ -73,9 +73,9 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AccommodationService {
 
-  constructor(private http : Http) { }
+    constructor(private http: Http) { }
 
-  addAccommodation(accommodation : Accommodation, file: File) : Observable<any> {
+    addAccommodation(accommodation: Accommodation, file: File): Observable<any> {
         accommodation.Place = null;
         accommodation.Rooms = null;
         accommodation.AccomodationType = null;
@@ -85,31 +85,49 @@ export class AccommodationService {
         console.log("aaaa" + formData);
         let headers = new Headers();
         headers.append('enctype', 'multipart/form-data');
-        
+
         headers.append('Accept', 'application/json');
-         headers.append("Authorization", "Bearer " + localStorage.getItem("token_id"));
-        let opts = new RequestOptions( { headers: headers });
+        headers.append("Authorization", "Bearer " + localStorage.getItem("token_id"));
+        let opts = new RequestOptions({ headers: headers });
 
         return this.http.post('http://localhost:54042/api/Accomodations', formData, opts);
-  }
+    }
 
-  getAllAccommodations() : Observable<any> {
-        return this.http.get('http://localhost:54042/api/accomodation?$expand=AccommodationType,Place');
-  }
+    getAllAccommodations(): Observable<any> {
+        // return this.http.get('http://localhost:54042/api/accomodation?$expand=AccommodationType,Place');
+        return this.http.get("http://localhost:54042/api/Accomodations");
+    }
+    /*getAllAccomodationsList() : Observable<any> {
+  
+        return this.http.get("http://localhost:54042/api/Accomodations");
+    }*/
 
-  getAccommodationById(id : number) : Observable<any> {
+    getAccommodationById(id: number): Observable<any> {
         return this.http.get(`http://localhost:54042/api/Accomodations/${id}`);
-  }
+    }
 
-  /* getByIdMap(Id : number) : Observable<any> {
-        let ret = this.http.get(`http://localhost:54042/api/accomodation?$filter=Id eq ${Id} &$expand=AccommodationType,Place,Rooms,Comments`).map(res => res.json());
-        return ret;
-      }*/
+    /* getByIdMap(Id : number) : Observable<any> {
+          let ret = this.http.get(`http://localhost:54042/api/accomodation?$filter=Id eq ${Id} &$expand=AccommodationType,Place,Rooms,Comments`).map(res => res.json());
+          return ret;
+        }*/
 
-     delete(id : number) : Observable<any> {
+    DeleteAccomodation(id: number): Observable<any> {
         return this.http.delete(`http://localhost:54042/api/Accomodations/${id}`);
     }
 
-    
+    /*deleteCountry(Id : number) : Observable<any> {
+        return this.http.delete(`http://localhost:54042/api/Countries/`+Id);
+    }*/
+    PutAccomodation(accomodation: Accommodation): Observable<any> {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
 
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(`http://localhost:54042/api/Accomodations/${accomodation.Id}`,
+            JSON.stringify(accomodation), opts);
+    }
 }

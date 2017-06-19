@@ -42,7 +42,7 @@ namespace BookingApp.Controllers
 
         // PUT: api/Places/5
         [Authorize(Roles = "Admin, Manager")]
-        [HttpGet]
+        [HttpPut]
         [Route("Places/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlace(int id, Place place) //changePlace

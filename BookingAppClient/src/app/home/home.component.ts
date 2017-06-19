@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+role: string;
 
-  constructor() { }
+  constructor() {
+    this.role = localStorage.getItem('role');
+   }
 
   ngOnInit() {
   }

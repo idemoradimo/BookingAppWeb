@@ -1,36 +1,51 @@
 <h3>Add room</h3>
 <form #f="ngForm" (ngSubmit)="addRoom(f.value, f)">
-     <div>
-      <label for="RoomNumber">RoomNumber</label>
-      <input type="nummber" name="RoomNumber" ngModel>
+    <div>
+        <label for="RoomNumber">RoomNumber</label>
+        <input type="nummber" name="RoomNumber" ngModel>
     </div>
     <div>
-      <label for="BedCount">BedCount</label>
-      <input type="number" name="BedCount" ngModel>
+        <label for="BedCount">BedCount</label>
+        <input type="number" name="BedCount" ngModel>
     </div>
 
     <div>
-      <label for="Description">Description</label>
-      <input type="text" name="Description" ngModel>
+        <label for="Description">Description</label>
+        <input type="text" name="Description" ngModel>
     </div>
-        <div>
-      <label for="PricePerNight">PricePerNight</label>
-      <input type="text" name="PricePerNight" ngModel>
+    <div>
+        <label for="PricePerNight">PricePerNight</label>
+        <input type="text" name="PricePerNight" ngModel>
     </div>
-     <div>
-    <select name="AccommodationId" id="AccommodationId" [(ngModel)]="AccommodationId">
+    <div>
+        <select name="AccomodationId" id="AccommodationId" [(ngModel)]="AccomodationId">
       <option *ngFor = "let accommodation of accommodations" value={{accommodation.Id}} >{{accommodation.Name}}</option>
     </select>
-  </div>
-  <input type="submit"/>
+    </div>
+    <input type="submit" />
 </form>
 
 <h3>Rooms</h3>
 <div>
-  <ul>
-    <li *ngFor="let room of rooms"
-    (click)='clicked(room)'>
-      {{room.Name}}
-    </li>
-  </ul>
+    <ul>
+        <li *ngFor="let room of rooms">{{room.RoomNumber}}
+            <button name="delete" (click)="DeleteRoom(room.Id)" type="button">Delete</button>
+            <div *ngIf="room != null">
+                <label for="RoomNumber">RoomNumber: </label>
+                <input type="text" name="RoomNumber" [(ngModel)]="room.RoomNumber" /><br>
+
+                <label for="BedCount">BedCount: </label>
+                <input type="text" name="BedCount" [(ngModel)]="room.BedCount" /><br>
+
+                <label for="Description">Description: </label>
+                <input type="text" name="Description" [(ngModel)]="room.Description" /><br>
+
+                <label for="PricePerNight">PricePerNight: </label>
+                <input type="text" name="PricePerNight" [(ngModel)]="room.PricePerNight" /><br>
+            </div><br>
+
+            <button type="button" (click)=PutRoom(room)>Edit</button>
+            <button type="button">Close</button>
+        </li>
+    </ul>
 </div>

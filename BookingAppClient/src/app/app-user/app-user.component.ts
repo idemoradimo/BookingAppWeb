@@ -12,8 +12,8 @@ import { NgForm } from '@angular/forms';
 
 export class AppUserComponent implements OnInit {
 
-  appUser: AppUser;
-  appUsers: Object[];
+  appUser: AppUser; // iz forme
+  appUsers: Object[]; //iz get metode
 
   constructor(
     private httpAppUserService: HttpAppUserService
@@ -32,9 +32,8 @@ export class AppUserComponent implements OnInit {
     this.httpAppUserService.postAppUser(newAppUser).subscribe(this.onPost);
   }
 
-onPost(res:any):void{
-  alert('Post!');
-  console.log(res.json());
-}
-
+  onPost(res:any):void{
+    alert('Post!');
+    console.log(res.json());
+  }
 }

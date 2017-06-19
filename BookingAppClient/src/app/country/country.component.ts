@@ -13,58 +13,49 @@ import {NgForm} from '@angular/forms';
 export class CountryComponent implements OnInit {
 
   country: Country;  
-  countries : Object [];
-
+  countries : Country [];
+  imeCountry : string;
 
   constructor(private httpCountryService: HttpCountryService) {}
 
-ngOnInit(){
-  this.httpCountryService.getCountries().subscribe((res:Response)=>{this.countries=res.json();
-  console.log(this.countries)});
-  
- 
-}
-
- /*  ngOnInit() {
-    this.httpCountryService.getCountries().subscribe(
-      (at: any) => {this.countries = at; console.log(this.countries)},//You can set the type to Product.
-      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
-    );
-    }*/
+  ngOnInit(){
+    this.httpCountryService.getCountries().subscribe((res:Response)=>{this.countries=res.json();
+    console.log(this.countries)});
+  }
 
   addCountry(newCountry: Country, form: NgForm) : void{
       this.httpCountryService.postCountry(newCountry).subscribe(this.onPost);
       form.reset();
     }    
 
-    deleteCountry(Id: number) {
-      this.httpCountryService.deleteCountry(Id).subscribe(()=>{ this.osvezi()}); 
-    }
+  deleteCountry(Id: number) {
+    this.httpCountryService.deleteCountry(Id).subscribe(()=>{ this.osvezi()}); 
+  }
   
-    osvezi()
-    {
-       this.httpCountryService.getCountries().subscribe((res:Response)=>{this.countries=res.json();console.log(this.countries)});
-    }
+  osvezi()
+  {
+      this.httpCountryService.getCountries().subscribe((res:Response)=>{this.countries=res.json();console.log(this.countries)});
+  }
 
   onPost(res : any) : void{
       alert("Post!");
       console.log(res.json());
       window.location.reload();
-    }
+  }
 
     
-      PutCountry(): void {
-    this.httpCountryService.PutCountry(this.country).subscribe(
+  PutCountry(country:Country): void {
+    this.httpCountryService.PutCountry(country).subscribe(
       (co: any) => { this.ngOnInit() },
       error => { alert("Unsuccessful edit!"); console.log(error); }
     );
+    alert("Edited succesfully!");
   }
 
   clicked(country: Country): void {
     alert(country.Name);
   }
-  
- }
+}
   
 
 

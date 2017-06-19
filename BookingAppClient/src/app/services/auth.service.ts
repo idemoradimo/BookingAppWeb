@@ -44,25 +44,9 @@ export class AuthService{
     
 
     isLoggedIn(): boolean{
-        if(localStorage.getItem("token") !== null)
+        if(localStorage.getItem("token_id") !== null)
             return true;
         else
             return false;
-    }
-
-   /* isUserAdmin():boolean
-    {
-        return (localStorage.getItem('role') === 'Admin' )
-    }
-    
-    isUserManager():boolean
-    {
-        return (localStorage.getItem('role') === 'Manager' )
-    }
-
-    isUserAppUser():boolean
-    {
-        return (localStorage.getItem('role') === 'AppUser' )
-    }*/
-  
+    }  
 }

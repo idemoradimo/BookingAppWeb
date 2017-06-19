@@ -53,5 +53,12 @@ export class RegionComponent implements OnInit {
   clicked(region: Region): void {
     alert(region.Name);
   }
+   PutRegion(region:Region): void {
+    this.httpRegionService.PutRegion(region).subscribe(
+      (co: any) => { this.ngOnInit() },
+      error => { alert("Unsuccessful edit!"); console.log(error); }
+    );
+    alert("Edited succesfully!");
+  }
 
 }

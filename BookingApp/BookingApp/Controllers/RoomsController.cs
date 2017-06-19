@@ -41,7 +41,8 @@ namespace BookingApp.Controllers
         }
 
         // PUT: api/Rooms/5
-        [Authorize(Roles = "Manager")]
+        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("Rooms/{id}")]
         [ResponseType(typeof(void))]
@@ -97,8 +98,9 @@ namespace BookingApp.Controllers
         }
 
         // DELETE: api/Rooms/5
-        [Authorize(Roles = "Manager")]
-        [HttpPost]
+       // [Authorize(Roles = "Manager")]
+   //     [Authorize(Roles = "Admin")]
+        [HttpDelete]
         [Route("Rooms/{id}")]
         [ResponseType(typeof(Room))]
         public IHttpActionResult DeleteRoom(int id) //deleteRoom

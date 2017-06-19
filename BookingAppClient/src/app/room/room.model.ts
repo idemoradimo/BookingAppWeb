@@ -1,11 +1,9 @@
 export class Room {
 
+    public Id : number;
     public RoomNumber: number;
     public BedCount: number;
-    /*[StringLength(50)]*/
     public Description: string;
     public PricePerNight: number;
-    /*[ForeignKey("Accomodation")]*/
     public AccomodationId: number;
-    //public Accomodation: Accomodation;
 }

@@ -1,19 +1,27 @@
 <h3>Add Accomodation type</h3>
 <div>
-  <ul>
-    <li *ngFor="let accType of accTypes">{{accType.Name}}
-     <button name="delete" (click) = "deleteAccType(accType.Id)" type="button">Delete</button> </li>
-  </ul>
+    <ul>
+        <li *ngFor="let accType of accTypes">{{accType.Name}}
+            <button name="delete" (click)="deleteAccType(accType.Id)" type="button">Delete</button>
+            <div *ngIf="accType != null">
+                <label for="Name">name: </label>
+                <input type="text" name="Name" [(ngModel)]="accType.Name" /><br>
+            </div><br>
+
+            <button type="button" (click)=PutAccType(accType)>Edit</button>
+            <button type="button">Close</button>
+        </li>
+    </ul>
 </div>
 
 <form #f="ngForm" (ngSubmit)="addAccType(f.value, f)">
-     
-<div>
-      <label for="Name">Name</label>
-      <input type="text" name="Name" ngModel>
-    
- </div>
- 
-  
-<input type="submit"/>
+
+    <div>
+        <label for="Name">Name</label>
+        <input type="text" name="Name" ngModel>
+
+    </div>
+
+
+    <input type="submit" />
 </form>

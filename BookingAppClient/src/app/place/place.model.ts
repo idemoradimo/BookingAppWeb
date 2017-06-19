@@ -4,6 +4,8 @@ export class Place {
     public Name: string;
     /*[ForeignKey("Region")]*/
     public RegionId: number;
+
+    public Id : number;
     //public Region: Region;
     
 }

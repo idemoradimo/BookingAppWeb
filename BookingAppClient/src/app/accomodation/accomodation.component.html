@@ -1,54 +1,93 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" enctype="multipart/form-data">
-  <div>
-    <label for = "Name">Name:</label>
-    <br>
-    <input type="text" name="Name" id="Name" [(ngModel)]="Name"/>
-  </div>
+    <div>
+        <label for="Name">Name:</label>
+        <br>
+        <input type="text" name="Name" id="Name" [(ngModel)]="Name" />
+    </div>
 
-  <div>
-    <label for = "Description">Description:</label>
-    <br>
-    <input type="text" name="Description" id="Description" [(ngModel)]="Description"/>
-  </div>
+    <div>
+        <label for="Description">Description:</label>
+        <br>
+        <input type="text" name="Description" id="Description" [(ngModel)]="Description" />
+    </div>
 
-  <div>
-    <label for = "Address">Address:</label>
-    <br>
-    <input type="text" name="Address" id="Address" [(ngModel)]="Address"/>
-  </div>
+    <div>
+        <label for="Address">Address:</label>
+        <br>
+        <input type="text" name="Address" id="Address" [(ngModel)]="Address" />
+    </div>
 
-  <div>
-    <label for = "Latitude">Latitude:</label>
-    <br>
-    <input type="number" name="Latitude" id="Latitude" [(ngModel)]="Latitude"/>
-  </div>
+    <div>
+        <label for="Latitude">Latitude:</label>
+        <br>
+        <input type="number" name="Latitude" id="Latitude" [(ngModel)]="Latitude" />
+    </div>
 
-  <div>
-    <label for = "Longitude">Longitude:</label>
-    <br>
-    <input type="number" name="Longitude" id="Longitude" [(ngModel)]="Longitude"/>
-  </div>
+    <div>
+        <label for="Longitude">Longitude:</label>
+        <br>
+        <input type="number" name="Longitude" id="Longitude" [(ngModel)]="Longitude" />
+    </div>
 
-  <div>
-    <select name="AccomodationTypeId" id="AccomodationTypeId" [(ngModel)]="AccomodationTypeId">
+    <div>
+        <select name="AccomodationTypeId" id="AccomodationTypeId" [(ngModel)]="AccomodationTypeId">
       <option *ngFor = "let t of types" value={{t.Id}} >{{t.Name}}</option>
     </select>
-  </div>
+    </div>
 
-  <div>
-    <label for = "ImageUrl">ImageUrl:</label>
-    <br>
-    <input type="file" name="ImageUrl" id="ImageUrl" (change)="onChange($event)"/>
-  </div>
+    <div>
+        <label for="ImageUrl">ImageUrl:</label>
+        <br>
+        <input type="file" name="ImageUrl" id="ImageUrl" (change)="onChange($event)" />
+    </div>
 
-  <div>
-    <select name="PlaceId" id="PlaceId" [(ngModel)]="PlaceId">
+    <div>
+        <select name="PlaceId" id="PlaceId" [(ngModel)]="PlaceId">
       <option *ngFor = "let place of places" value={{place.Id}} >{{place.Name}}</option>
     </select>
-  </div>
+    </div>
 
-  <div>
-    <input type="submit" value="Add"/>
-  </div>
+    <div>
+        <input type="submit" value="Add" />
+    </div>
+
+    <h3>Accomodations:</h3>
+    <div>
+        <ul>
+            <li *ngFor="let acc of accomodations">
+                {{acc.Name}}
+                <button name="delete" (click)="DeleteAccomodation(acc.Id)" type="button">Delete</button>
+                <div *ngIf="acc != null">
+                    <label for="Name">name: </label>
+                    <input type="text" name="Name" value={{acc.Name}} /><br>
+
+                    <label for="Description">Description: </label>
+                    <input type="text" name="Description" value={{acc.Description}} /><br>
+
+                    <label for="Address">Address: </label>
+                    <input type="text" name="Address" value={{acc.Address}} /><br>
+
+                    <label for="Latitude">Latitude: </label>
+                    <input type="number" name="Latitude" value={{acc.Latitude}} /><br>
+
+                    <label for="Longtitude">Longitude: </label>
+                    <input type="number" name="Longtitude" value={{acc.Longtitude}} /><br>
+
+                    <label for="AccomodationTypeId">AccomodationTypeId: </label>
+                    <input type="text" name="AccomodationTypeId" value={{acc.AccomodationTypeId}} /><br>
+
+                    <label for="ImageUrl">ImageUrl: </label>
+                    <input type="file" name="ImageUrl" value={{acc.ImageUrl}} /><br>
+
+                    <label for="PlaceId">PlaceId: </label>
+                    <input type="number" name="PlaceId" value={{acc.PlaceId}} /><br>
+
+                </div>
+                <button type="button" (click)=PutAccomodation(acc)>Edit</button>
+                <button type="button">Close</button><br>
+                <p></p>
+            </li>
+        </ul>
+    </div>
 
 </form>

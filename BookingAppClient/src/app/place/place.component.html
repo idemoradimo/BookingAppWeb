@@ -1,22 +1,28 @@
 <h3>Add place</h3>
 <form #f="ngForm" (ngSubmit)="addPlace(f.value, f)">
-     <div>
-      <label for="Name">Name</label>
-      <input type="text" name="Name" ngModel>
+    <div>
+        <label for="Name">Name</label>
+        <input type="text" name="Name" ngModel>
     </div>
     <select name="RegionId" id="RegionId" [(ngModel)]="RegionId">
       <option *ngFor = "let region of regions" value={{region.Id}} >{{region.Name}}</option>
     </select>
-  <input type="submit"/>
+    <input type="submit" />
 </form>
 
 <h3>Places</h3>
 <div>
-  <ul>
-    <li *ngFor="let place of places"
-    (click)='clicked(place)'>
-      {{place.Name}}
-       <button name="delete" (click) = "deletePlace(place.Id)" type="button">Delete</button>
-    </li>
-  </ul>
+    <ul>
+        <li *ngFor="let place of places" (click)='clicked(place)'>
+            {{place.Name}}
+            <button name="delete" (click)="deletePlace(place.Id)" type="button">Delete</button>
+            <div *ngIf="place != null">
+                <label for="Name">name: </label>
+                <input type="text" name="Name" [(ngModel)]="place.Name" /><br>
+            </div><br>
+
+            <button type="button" (click)=PutPlace(place)>Edit</button>
+            <button type="button">Close</button>
+        </li>
+    </ul>
 </div>

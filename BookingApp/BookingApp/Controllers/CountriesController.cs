@@ -41,7 +41,7 @@ namespace BookingApp.Controllers
         }
 
         // PUT: api/Countries/5
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("Countries/{id}")]
         [ResponseType(typeof(void))]

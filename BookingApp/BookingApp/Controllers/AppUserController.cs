@@ -78,7 +78,7 @@ namespace BookingApp.Controllers
             return Unauthorized();
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("AppUser/{id}")]
         [ResponseType(typeof(void))]

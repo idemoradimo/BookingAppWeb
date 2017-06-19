@@ -52,6 +52,16 @@ export class HttpAccTypeService{
 
         return this.http.delete(`http://localhost:54042/api/AccomodationTypes/${id}`, opts);
     }*/
-   
+        PutAccType(accType: AccType) : Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
 
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(`http://localhost:54042/api/AccomodationTypes/${accType.Id}`,  
+        JSON.stringify(accType), opts);
+    }
 }

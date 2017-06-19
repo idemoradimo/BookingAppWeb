@@ -10,33 +10,26 @@ import { Router, ActivatedRoute } from "@angular/router"
 })
 export class AppComponent {
   title = 'app';
+  role: string;
+  public isLogged: boolean;
 
 constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService)
   {
-
+    this.role = localStorage.getItem('role');
   }
 
   ngOnInit()
   {
     //this.router.navigate(['/home']);
+    this.isLogged=this.authService.isLoggedIn();
   }
 
   isUserLoggedIn():boolean
   {
+    //this.isLogged=this.authService.isLoggedIn();
     return this.authService.isLoggedIn();
   }
- /* isAdmin():boolean
-  {
-    return this.authService.isUserAdmin();
-  }
-  isAppUser():boolean
-  {
-    return this.authService.isUserAppUser();
-  }
-  isManager():boolean
-  {
-    return this.authService.isUserManager();
-  }*/
+
   userLogout(){
     this.authService.logOut().subscribe(x => {  localStorage.clear(); this.router.navigate(['/home']); });
   }

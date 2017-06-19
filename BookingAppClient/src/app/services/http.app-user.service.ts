@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HttpAppUserService{
-    appUser: AppUser;
+    public appUser: AppUser;
 
     constructor(private http:Http){
 
@@ -15,6 +15,17 @@ export class HttpAppUserService{
 
     getAppUsers():Observable<any> {
         return this.http.get("http://localhost:54042/api/AppUser").map(this.extractData);
+    }
+
+    getAppUser() {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem("token_id"));
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+        return this.http.get("http://localhost:54042/api/AppUser",opts).map(this.extractData);
     }
 
     private extractData(res:Response){
@@ -26,7 +37,7 @@ export class HttpAppUserService{
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
-       // headers.append('Authorization', 'Bearer ' + localStorage.getItem('Role'));
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem("token_id"));
 
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
@@ -36,7 +47,8 @@ export class HttpAppUserService{
             JSON.stringify({
                     Userame: appUser.Username,
                     Password: appUser.Password,
-                    Email: appUser.Email
+                    Email: appUser.Email,
+                    Id: appUser.Id
             }),opts);
     }
 }

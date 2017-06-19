@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Room} from './room.model'
+import {Room} from './room.model';
 import { Http, Response } from '@angular/http';
 import { HttpRoomService } from '../services/http.room.service';
 import {NgForm} from '@angular/forms';
@@ -15,12 +15,12 @@ import { Accommodation } from '../accomodation/accomodation.model';
 })
 export class RoomComponent implements OnInit {
 
-  rooms: Object[];
+  rooms: Room[];
   room: Room;   
   accommodations: Accommodation[];
 
   constructor(private httpRoomService: HttpRoomService,private httpAccomodationService:AccommodationService)
-   { /* this.accommodations = [];*/}
+   { /* this.accommodations = []; this.rooms=[];*/}
 
 
   /* ngOnInit() {
@@ -31,8 +31,14 @@ export class RoomComponent implements OnInit {
     this.httpAccomodationService.getAccomodation().subscribe(a => this.accommodations = a.json());
   }*/
   ngOnInit() {
+     this.httpRoomService.getRoom().subscribe((res:Response)=>{
+      // debugger
+      this.rooms=res.json(); 
+    console.log(this.rooms)});
     //this.httpAccomodationService.getAllAccommodations().subscribe(a => this.accommodations = a.json());
     this.httpAccomodationService.getAllAccommodations().subscribe(x => this.accommodations = x.json());
+   /* this.httpRoomService.getRoom().subscribe((res:Response)=>{this.rooms=res.json()
+    console.log(this.rooms)});*/ 
   }
 
   addRoom(newRoom: Room, form: NgForm) : void{
@@ -43,10 +49,28 @@ export class RoomComponent implements OnInit {
   onPost(res : any) : void{
       alert("Post!");
       console.log(res.json());
+      window.location.reload();
     }
 
   clicked(room: Room): void {
     alert(room.RoomNumber);
+  }
+  DeleteRoom(Id: number) {
+    this.httpRoomService.DeleteRoom(Id).subscribe(()=>{ this.osvezi()}); 
+  }
+  
+  osvezi()
+  {
+      this.httpRoomService.getRoom().subscribe((res:Response)=>{this.rooms=res.json();
+        
+        console.log(this.rooms)});
+  }
+   PutRoom(room:Room): void {
+    this.httpRoomService.PutRoom(room).subscribe(
+      (co: any) => { this.ngOnInit() },
+      error => { alert("Unsuccessful edit!"); console.log(error); }
+    );
+    alert("Edited succesfully!");
   }
 
 }

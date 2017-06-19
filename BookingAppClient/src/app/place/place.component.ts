@@ -51,4 +51,14 @@ export class PlaceComponent implements OnInit {
   clicked(place: Place): void {
       alert(place.Name);
   }
+
+  
+   PutPlace(place:Place): void {
+    this.httpPlaceService.PutPlace(place).subscribe(
+      (co: any) => { this.ngOnInit() },
+      error => { alert("Unsuccessful edit!"); console.log(error); }
+    );
+    alert("Edited succesfully!");
+  }
+  
 }

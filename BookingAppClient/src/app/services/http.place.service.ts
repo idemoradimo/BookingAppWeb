@@ -38,4 +38,17 @@ export class HttpPlaceService{
    deletePlace(Id : number) : Observable<any> {
         return this.http.delete(`http://localhost:54042/api/Places/`+Id);
     }
+
+        PutPlace(place: Place) : Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(`http://localhost:54042/api/Places/${place.Id}`,  
+        JSON.stringify(place), opts);
+    }
 }

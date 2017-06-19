@@ -1,29 +1,37 @@
 <h3>Add room-reservations</h3>
 <form #f="ngForm" (ngSubmit)="addRoomReservation(f.value, f)">
-     <div>
-      <label for="StartDate: ">StartDate</label>
-      <input type="date" name="StartDate" ngModel>
+    <div>
+        <label for="StartDate: ">StartDate</label>
+        <input type="date" name="StartDate" ngModel>
     </div>
     <div>
-      <label for="EndDate: ">EndDate</label>
-      <input type="date" name="EndDate" ngModel>
+        <label for="EndDate: ">EndDate</label>
+        <input type="date" name="EndDate" ngModel>
     </div>
-       <div>
-      <label for="Timestamp: : ">Timestamp</label>
-      <input type="time" name="Timestamp" ngModel>
+    <div>
+        <label for="Timestamp: : ">Timestamp</label>
+        <input type="time" name="Timestamp" ngModel>
     </div>
-    <select name="RoomReservationId" id="RoomReservationId" [(ngModel)]="RoomReservationId">
-      <option *ngFor = "let roomreservation of roomreservationId" value={{roomreservation.Id}} >{{roomreservation.Name}}</option>
+    Soba:
+    <select name="RoomId" id="RoomId" [(ngModel)]="RoomId">
+      <option *ngFor = "let room of rooms" value={{room.Id}} >{{room.Id}}</option>
     </select>
-  <input type="submit"/>
+    <input type="submit" />
 </form>
 
 <h3>RoomReservations</h3>
 <div>
-  <ul>
-    <li *ngFor="let roomreservation of roomreservations"
-    (click)='clicked(roomreservation)'>
-      {{roomreservations.Name}}
-    </li>
-  </ul>
+    <ul>
+        <li *ngFor="let room of roomreservations">
+            {{room.id}}
+            <button name="delete" (click)="DeleteRoomReservation(room.Id)" type="button">Delete</button><br>
+            <label for="StartDate">StartDate: </label>{{room.StartDate}}<br>
+
+            <label for="EndDate">EndDate: </label>{{room.EndDate}}<br>
+
+            <label for="Timestamp: : ">Timestamp: </label>{{room.Timestamp}} <br>
+
+            <label for="RoomId: : ">RoomId: </label> {{room.Timestamp}}<br>
+        </li>
+    </ul>
 </div>

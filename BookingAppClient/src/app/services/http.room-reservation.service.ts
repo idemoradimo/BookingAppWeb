@@ -14,7 +14,7 @@ export class HttpRoomReservationService{
 
     getRoomReservation(): Observable<any> {
 
-        return this.http.get("http://localhost:54042/api/RoomReservations").map(this.extractData);        
+        return this.http.get("http://localhost:54042/api/RoomReservations");        
     }
 
     private extractData(res: Response) {
@@ -26,6 +26,7 @@ export class HttpRoomReservationService{
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem("token_id"));
 
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;

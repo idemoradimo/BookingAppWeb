@@ -19,6 +19,11 @@ export class HttpCountryService{
         return this.http.get("http://localhost:54042/api/Countries");        
     }
 
+    getCountrie() {
+        
+        return this.http.get("http://localhost:54042/api/Countries");        
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || [];
@@ -34,9 +39,9 @@ export class HttpCountryService{
 
         return this.http.post(
         'http://localhost:54042/api/Countries',country, opts);
-  }
+    }
 
-   deleteCountry(Id : number) : Observable<any> {
+    deleteCountry(Id : number) : Observable<any> {
         return this.http.delete(`http://localhost:54042/api/Countries/`+Id);
     }
 
@@ -44,12 +49,12 @@ export class HttpCountryService{
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
-        //headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
 
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
 
-       return this.http.put(`http://localhost:54042/api/Countries/${country.Id}`,  
-       JSON.stringify(country), opts);
+        return this.http.put(`http://localhost:54042/api/Countries/${country.Id}`,  
+        JSON.stringify(country), opts);
     }
 }

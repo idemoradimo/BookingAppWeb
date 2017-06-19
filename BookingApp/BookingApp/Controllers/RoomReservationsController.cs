@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BookingApp.Controllers
 {
@@ -16,6 +18,19 @@ namespace BookingApp.Controllers
     public class RoomReservationsController : ApiController
     {
         private BAContext db = new BAContext();
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: api/RoomReservations
         [HttpGet]
@@ -89,6 +104,11 @@ namespace BookingApp.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var username = User.Identity.GetUserName();
+            var user = UserManager.FindByName(username);
+            int userId = user.appUserId;
+
+            roomReservations.AppUserId = userId;
 
             db.RoomReservations.Add(roomReservations);
             db.SaveChanges();

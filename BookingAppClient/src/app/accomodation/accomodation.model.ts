@@ -1,28 +1,3 @@
-//import { AccType } from '../accomodation-type/accomodation-type.model';
-
- /*   export class Accomodation {
-    
-    
-    public Name: string;
-   
-    public Description: string;
-  
-    public Address: string;
-    public AverageGrade: number;
-    public Latitude: number;
-    public Longtitude: number;
-    
-    public ImageURL: string;
-    public Approved: boolean;
-
-
-    public PlaceId: number;
-   
-    public AppUserId: number;
-    
-    public AccomodationTypeId: number;
-    
-}*/
 import { Place } from "../place/place.model";
 import { LoginModel } from "../login/login.model";
 import { AccType } from '../accomodation-type/accomodation-type.model';

@@ -1,35 +1,32 @@
 <h3>Add country</h3>
 <form #f="ngForm" (ngSubmit)="addCountry(f.value, f)">
-     <div>
-      <label for="Name">Name</label>
-      <input type="text" name="Name" ngModel>
+    <div>
+        <label for="Name">Name</label>
+        <input type="text" name="Name" ngModel>
     </div>
     <div>
-      <label for="Code">Code</label>
-      <input type="text" name="Code" ngModel>
+        <label for="Code">Code</label>
+        <input type="text" name="Code" ngModel>
     </div>
-  <input type="submit"/>
+    <input type="submit" />
 </form>
 
 <h3>Countries</h3>
 <div>
-  <ul>
-    <li *ngFor="let country of countries"> {{country.Name}}
-      <button name="delete" (click) = "deleteCountry(country.Id)" type="button">Delete</button>
-      <div *ngIf="country != null" >
-                        <label for="Name">name: </label>
-                        <input type = "text" name ="Name" id="Name" [(ngModel)]="country.Name"/><br>
-                        
-                        <label for="Code">code: </label>
-                        <input type = "number" name ="Code" id="Code" [(ngModel)]="country.Code"/><br>
-                    </div><br>
+    <ul>
+        <li *ngFor="let country of countries">
+            {{country.Name}}
+            <button name="delete" (click)="deleteCountry(country.Id)" type="button">Delete</button>
+            <div *ngIf="country != null">
+                <label for="Name">name: </label>
+                <input type="text" name="Name" [(ngModel)]="country.Name" /><br>
 
-                    <button type="submit" (click)="PutCountry()">Edit</button>
-                    <button type="button">Close</button>
-    </li>
-  </ul>
+                <label for="Code">code: </label>
+                <input type="number" name="Code" [(ngModel)]="country.Code" /><br>
+            </div><br>
+
+            <button type="button" (click)=PutCountry(country)>Edit</button>
+            <button type="button">Close</button>
+        </li>
+    </ul>
 </div>
-
-
-                   
-       

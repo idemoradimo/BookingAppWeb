@@ -12,6 +12,8 @@ using BookingApp.Models;
 using System.Web;
 using Newtonsoft.Json;
 using System.Data.Entity.Validation;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BookingApp.Controllers
 {
@@ -20,8 +22,20 @@ namespace BookingApp.Controllers
     public class AccomodationsController : ApiController
     {
         private BAContext db = new BAContext();
+        private ApplicationUserManager _userManager;
 
-      
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
         [HttpGet]
         [Route("Accomodations", Name = "Acc")]
         public IQueryable<Accomodation> GetAccomodations()
@@ -126,24 +140,32 @@ namespace BookingApp.Controllers
                 }
             }
 
+            var username = User.Identity.GetUserName();
+            var user = UserManager.FindByName(username);
+            int userId = user.appUserId;
+            accommodation.Approved = false;
+            accommodation.AverageGrade = 1;
+            accommodation.AppUserId = userId;
+
             db.Accomodations.Add(accommodation);
+
             try
             {
                 db.SaveChanges();
             }
-            catch (DbEntityValidationException)
+            catch (DbEntityValidationException e)
             {
-                return BadRequest(ModelState);
+                return BadRequest(e.Message);
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException e)
             {
-                return BadRequest(ModelState);
+                return BadRequest(e.Message);
             }
 
             return CreatedAtRoute("DefaultApi", new { controller = "Accommodation", id = accommodation.Id }, accommodation);
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("Accomodations/{id}")]
         [ResponseType(typeof(Accomodation))]
         public IHttpActionResult DeleteAccomodation(int id)
