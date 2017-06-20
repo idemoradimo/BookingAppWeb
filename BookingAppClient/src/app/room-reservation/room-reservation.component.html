@@ -22,16 +22,16 @@
 <h3>RoomReservations</h3>
 <div>
     <ul>
-        <li *ngFor="let room of roomreservations">
-            {{room.id}}
-            <button name="delete" (click)="DeleteRoomReservation(room.Id)" type="button">Delete</button><br>
-            <label for="StartDate">StartDate: </label>{{room.StartDate}}<br>
+        <li *ngFor="let rm of roomreservations">
+            {{rm.id}}
+            <button name="delete" (click)="DeleteRoomReservation(rm.Id)" type="button">Delete</button><br>
+            <label for="StartDate">StartDate: </label>{{rm.StartDate}}<br>
 
-            <label for="EndDate">EndDate: </label>{{room.EndDate}}<br>
+            <label for="EndDate">EndDate: </label>{{rm.EndDate}}<br>
 
-            <label for="Timestamp: : ">Timestamp: </label>{{room.Timestamp}} <br>
+            <label for="Timestamp: : ">Timestamp: </label>{{rm.Timestamp}} <br>
 
-            <label for="RoomId: : ">RoomId: </label> {{room.Timestamp}}<br>
+            <label for="RoomId: : ">RoomId: </label> {{rm.Timestamp}}<br>
         </li>
     </ul>
 </div>

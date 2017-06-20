@@ -2,6 +2,10 @@ import { Place } from "../place/place.model";
 import { LoginModel } from "../login/login.model";
 import { AccType } from '../accomodation-type/accomodation-type.model';
 import { Room } from "app/room/room.model";
+import { NgModule, ApplicationRef } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export class Accommodation {
     Id: number;
@@ -39,4 +43,5 @@ export class Accommodation {
         this.AccomodationTypeId = accommodationTypeId;
         this.UserId = userId;
     }
+
 }

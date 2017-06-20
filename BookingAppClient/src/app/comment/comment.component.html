@@ -1,3 +1,38 @@
-<p>
-  comment works!
-</p>
+<h3>Add comment</h3>
+<form #f="ngForm" (ngSubmit)="addComment(f.value, f)">
+    <div>
+        <label for="Grade">Grade</label>
+        <input type="number" name="Grade" ngModel>
+
+    </div>
+    <div>
+        <label for="Text">Text</label>
+        <input type="text" name="Text" ngModel>
+    </div>
+    <div>
+        <select name="AccomodationId" id="AccommodationId" [(ngModel)]="AccomodationId">
+      <option *ngFor = "let accommodation of accommodations" value={{accommodation.Id}} >{{accommodation.Name}}</option>
+    </select>
+    </div>
+    <input type="submit" />
+</form>
+
+<h3>Comment</h3>
+<div>
+    <ul>
+        <li *ngFor="let com of comments">
+            {{com.Name}}
+            <button name="delete" (click)="deleteComment(com.Id)" type="button">Delete</button>
+            <div *ngIf="com != null">
+                <label for="Grade">Grade: </label>
+                <input type="number" name="Grade" [(ngModel)]="com.Grade" /><br>
+
+                <label for="Text">Text: </label>
+                <input type="text" name="Text" [(ngModel)]="com.Text" /><br>
+            </div><br>
+
+            <button type="button" (click)=PutComment(com)>Edit</button>
+            <button type="button">Close</button>
+        </li>
+    </ul>
+</div>

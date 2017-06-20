@@ -21,6 +21,8 @@ export class CountryComponent implements OnInit {
   ngOnInit(){
     this.httpCountryService.getCountries().subscribe((res:Response)=>{this.countries=res.json();
     console.log(this.countries)});
+      //  this.httpAccomodationService.getAllAccommodations().subscribe(x => this.accommodations = x.json());
+
   }
 
   addCountry(newCountry: Country, form: NgForm) : void{

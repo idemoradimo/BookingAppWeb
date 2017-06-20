@@ -49,6 +49,7 @@ export class AccomodationComponent implements OnInit {
   countries: Country[];
   regions: Region[];
   accomodations: Accommodation[];
+  url: string = "http://localhost:54042/";
 
 
   constructor(private accommodationService: AccommodationService, private placeService: HttpPlaceService,
@@ -59,7 +60,7 @@ export class AccomodationComponent implements OnInit {
     this.regions = [];
     this.countries = [];
     this.accomodations = [];
-
+    this.url = "http://localhost:54042/";
   }
 
   ngOnInit() {
@@ -72,6 +73,7 @@ export class AccomodationComponent implements OnInit {
       console.log(this.accomodations)
     });
 
+    this.url = "http://localhost:54042/";
   }
 
   getTypesAndCountries() {
@@ -117,9 +119,7 @@ export class AccomodationComponent implements OnInit {
     let files: FileList = target.files;
     this.file = files[0];
   }
-
-
-
+  
   DeleteAccomodation(Id: number) {
     this.accommodationService.DeleteAccomodation(Id).subscribe(() => { this.osvezi() });
   }

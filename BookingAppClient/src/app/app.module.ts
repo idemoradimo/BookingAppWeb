@@ -19,27 +19,25 @@ import { RegionComponent } from './region/region.component';
 import { RoomComponent } from './room/room.component';
 import { RoomReservationComponent } from './room-reservation/room-reservation.component';
 import { ServicesComponent } from './services/services.component';
-
-
-
+import { AgmCoreModule } from '@agm/core';
 
 const Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: "home", component: HomeComponent},
-  {path: "registration", component: RegistrationComponent},
-   {path: "login", component: LoginComponent},
-  {path: "other", redirectTo:"home"},
-  {path: "country",component: CountryComponent},
-  {path: "accomodation-type",component:AccomodationTypeComponent},
-  {path: "accomodation",component:AccomodationComponent},
-  {path:"place",component:PlaceComponent},
-  {path:"region",component:RegionComponent},
-  {path:"room",component:RoomComponent},
-  {path:"room-reservation",component:RoomReservationComponent},
-  {path:"logout",component:LogoutComponent}
- 
-] 
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: "home", component: HomeComponent },
+  { path: "registration", component: RegistrationComponent },
+  { path: "login", component: LoginComponent },
+  { path: "other", redirectTo: "home" },
+  { path: "country", component: CountryComponent },
+  { path: "accomodation-type", component: AccomodationTypeComponent },
+  { path: "accomodation", component: AccomodationComponent },
+  { path: "place", component: PlaceComponent },
+  { path: "region", component: RegionComponent },
+  { path: "room", component: RoomComponent },
+  { path: "room-reservation", component: RoomReservationComponent },
+  { path: "logout", component: LogoutComponent },
+  {path : "comment",component: CommentComponent}
 
+]
 
 @NgModule({
   declarations: [
@@ -57,13 +55,18 @@ const Routes = [
     RegionComponent,
     RoomComponent,
     RoomReservationComponent,
-    ServicesComponent
+    ServicesComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    //CommonModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(Routes)
+    RouterModule.forRoot(Routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBA7wzZb_UtWZMV01eD-MzmnTUC7b1K_OQ'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

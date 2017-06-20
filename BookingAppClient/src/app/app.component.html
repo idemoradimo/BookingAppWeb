@@ -10,5 +10,10 @@
     <a *ngIf="isLogged==true" [routerLink]="['/logout']">Logout</a>
     <br><br>
 
+    <!-- this creates a google map on the page with the given lat/lng from -->
+    <!-- the component as the initial center of the map: -->
     <router-outlet></router-outlet>
-    <div>
+    <!--<agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>-->
+</div>

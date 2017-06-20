@@ -11,27 +11,28 @@ import { NgForm } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
-  Username : string;
-  Password : string;
-  Email : string;
+  Username: string;
+  Password: string;
+  Email: string;
   ConfirmPassword: string;
   Role: string;
 
-  constructor(private userService : UserService) { 
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
   }
 
-  onSubmitRegister(user:User,form:NgForm){
+  onSubmitRegister(user: User, form: NgForm) {
     this.userService.register(new User(this.Username, this.Password, this.Role, this.Email, this.ConfirmPassword)).subscribe();
     this.Email = "";
     this.Password = "";
     this.ConfirmPassword = "";
     form.resetForm();
+    alert("Successfully registered!");
   }
 
-  onSubmitLogin(){
+  onSubmitLogin() {
     this.userService.login(new User(this.Username, this.Password, this.Role, this.Email, this.ConfirmPassword)).subscribe();
     this.Email = "";
     this.Password = "";

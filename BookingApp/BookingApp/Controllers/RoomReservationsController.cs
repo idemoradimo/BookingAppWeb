@@ -33,6 +33,7 @@ namespace BookingApp.Controllers
         }
 
         // GET: api/RoomReservations
+        [Authorize(Roles = "AppUser")]
         [HttpGet]
         [Route("RoomReservations", Name = "RRes")]
         public IQueryable<RoomReservations> GetRoomReservations()
@@ -41,6 +42,7 @@ namespace BookingApp.Controllers
         }
 
         // GET: api/RoomReservations/5
+        [Authorize(Roles = "AppUser")]
         [HttpGet]
         [Route("RoomReservations/{id}")]
         [ResponseType(typeof(RoomReservations))]
@@ -56,7 +58,8 @@ namespace BookingApp.Controllers
         }
 
         // PUT: api/RoomReservations/5
-        [Authorize(Roles ="Manager")]
+        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "AppUser")]
         [HttpPut]
         [Route("RoomReservations/{id}")]
         [ResponseType(typeof(void))]
@@ -94,7 +97,7 @@ namespace BookingApp.Controllers
         }
 
         // POST: api/RoomReservations
- //       [Authorize(Roles = "Manager")]
+        //       [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("RoomReservations")]
         [ResponseType(typeof(RoomReservations))]

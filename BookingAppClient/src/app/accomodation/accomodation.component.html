@@ -24,9 +24,9 @@
     </div>
 
     <div>
-        <label for="Longitude">Longitude:</label>
+        <label for="Longtitude">Longitude:</label>
         <br>
-        <input type="number" name="Longitude" id="Longitude" [(ngModel)]="Longitude" />
+        <input type="number" name="Longtitude" id="Longtitude" [(ngModel)]="Longtitude" />
     </div>
 
     <div>
@@ -59,35 +59,43 @@
                 <button name="delete" (click)="DeleteAccomodation(acc.Id)" type="button">Delete</button>
                 <div *ngIf="acc != null">
                     <label for="Name">name: </label>
-                    <input type="text" name="Name" value={{acc.Name}} /><br>
+                    <input type="text" name="Name1" [(ngModel)]="acc.Name" /><br>
 
                     <label for="Description">Description: </label>
-                    <input type="text" name="Description" value={{acc.Description}} /><br>
+                    <input type="text" name="Description1" [(ngModel)]="acc.Description" /><br>
 
                     <label for="Address">Address: </label>
-                    <input type="text" name="Address" value={{acc.Address}} /><br>
+                    <input type="text" name="Address1" [(ngModel)]="acc.Address" /><br>
 
                     <label for="Latitude">Latitude: </label>
-                    <input type="number" name="Latitude" value={{acc.Latitude}} /><br>
+                    <input type="number" name="Latitude1" [(ngModel)]="acc.Latitude" /><br>
 
                     <label for="Longtitude">Longitude: </label>
-                    <input type="number" name="Longtitude" value={{acc.Longtitude}} /><br>
+                    <input type="number" name="Longtitude1" [(ngModel)]="acc.Longtitude" /><br>
 
                     <label for="AccomodationTypeId">AccomodationTypeId: </label>
-                    <input type="text" name="AccomodationTypeId" value={{acc.AccomodationTypeId}} /><br>
+                    <input type="text" name="AccomodationTypeId1" [(ngModel)]="acc.AccomodationTypeId" /><br>
 
                     <label for="ImageUrl">ImageUrl: </label>
-                    <input type="file" name="ImageUrl" value={{acc.ImageUrl}} /><br>
+                    <input type="file" name="ImageUrl1" [(ngModel)]="acc.ImageUrl" /><br>
+
+                    <img src="{{url + acc.ImageURL}}" alt="ImageUrl" height="42" width="42">
 
                     <label for="PlaceId">PlaceId: </label>
-                    <input type="number" name="PlaceId" value={{acc.PlaceId}} /><br>
-
+                    <input type="number" name="PlaceId1" [(ngModel)]="acc.PlaceId" /><br>
                 </div>
                 <button type="button" (click)=PutAccomodation(acc)>Edit</button>
-                <button type="button">Close</button><br>
+                <br>
                 <p></p>
             </li>
+
         </ul>
     </div>
+    <h1>{{ title }}</h1>
 
+    <router-outlet></router-outlet>
+    <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker *ngFor="let acc of accomodations" [latitude]="acc.Latitude" [longitude]="acc.Longtitude">
+        </agm-marker>
+    </agm-map>
 </form>

@@ -147,6 +147,7 @@ namespace BookingApp.Controllers
             accommodation.AverageGrade = 1;
             accommodation.AppUserId = userId;
 
+
             db.Accomodations.Add(accommodation);
 
             try

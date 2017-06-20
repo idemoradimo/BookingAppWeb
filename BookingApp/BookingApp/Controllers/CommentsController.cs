@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApp.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace BookingApp.Controllers
 {
@@ -17,9 +19,24 @@ namespace BookingApp.Controllers
     {
         private BAContext db = new BAContext();
 
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
         // GET: api/Comments
         [HttpGet]
-        [Route("Comments", Name = "Comm")]
+        [AllowAnonymous]
+        [Route("Comments")]
         public IQueryable<Comment> GetComments()
         {
             return db.Comments;
@@ -87,6 +104,12 @@ namespace BookingApp.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            var username = User.Identity.GetUserName();
+            var user = UserManager.FindByName(username);
+            int userId = user.appUserId;
+            comment.AppUsersId = userId;
+
 
             db.Comments.Add(comment);
             db.SaveChanges();
